@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Rescue Login</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+}
+
+.wrapper{
+    display:flex;
+    gap:40px;
+}
+
+/* Common Container */
+
+.container{
+    width:420px;
+    background:white;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.logo{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:8px;
+}
+
+p{
+    text-align:center;
+    color:gray;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.userBtn{
+    background:#2563eb;
+}
+
+.userBtn:hover{
+    background:#1d4ed8;
+}
+
+.adminBtn{
+    background:#dc2626;
+}
+
+.adminBtn:hover{
+    background:#b91c1c;
+}
+
+.register{
+    display:block;
+    text-align:center;
+    background:#16a34a;
+    color:white;
+    padding:13px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.register:hover{
+    background:#15803d;
+}
+
+.error{
+    color:red;
+    text-align:center;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- USER LOGIN -->
+
+    <div class="container">
+
+        <div class="logo">👤</div>
+
+        <h2>User Login</h2>
+
+        <p>Emergency Hospital Management System</p>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="/login" method="POST">
+
+            <input
+            type="email"
+            name="email"
+            placeholder="Enter User Email"
+            required>
+
+            <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required>
+
+            <button class="userBtn">
+                Login as User
+            </button>
+
+        </form>
+
+        <a href="/register" class="register">
+            Register New User
+        </a>
+
+    </div>
+
+
+
+    <!-- ADMIN LOGIN -->
+
+    <div class="container">
+
+        <div class="logo">👨‍💼</div>
+
+        <h2>Administrator</h2>
+
+        <p>Authorized Personnel Only</p>
+
+        <form action="/admin_login" method="POST">
+
+            <input
+            type="email"
+            name="email"
+            placeholder="Admin Email"
+            required>
+
+            <input
+            type="password"
+            name="password"
+            placeholder="Admin Password"
+            required>
+
+            <button class="adminBtn">
+                Login as Admin
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

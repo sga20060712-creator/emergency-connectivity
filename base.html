@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title or 'Quick Rescue' }}</title>
+    <style>
+        body{margin:0;font-family:Arial;background:#f3f6fb;color:#0f172a}.layout{display:flex;min-height:100vh}.side{width:220px;background:#0f172a;color:white;padding:25px}.side h2{margin-bottom:30px}.side a{display:block;color:white;text-decoration:none;padding:12px;border-radius:8px;margin:8px 0}.side a:hover,.side .btn{background:#2563eb}.main{flex:1}.top{background:white;padding:18px 24px;box-shadow:0 2px 8px #ddd;display:flex;justify-content:space-between}.content{padding:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.card{background:white;padding:22px;border-radius:14px;box-shadow:0 5px 18px #dbe1ec}.btn{display:inline-block;background:#2563eb;color:white;text-decoration:none;border:0;padding:10px 16px;border-radius:8px;font-weight:bold}.red{background:#dc2626}.green{background:#16a34a}.gray{background:#64748b}.yellow{background:#f59e0b;color:#111827}table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden}th,td{padding:14px;border-bottom:1px solid #e5e7eb;text-align:left}th{background:#f8fafc}input,select{padding:10px;margin:6px;border:1px solid #ccc;border-radius:7px}.badge{padding:7px 12px;border-radius:20px;font-weight:bold;background:#fff3cd;color:#8a5a00}.Approved,.Success,.Completed{background:#dcfce7;color:#166534}.Rejected{background:#fee2e2;color:#991b1b}
+    </style>
+</head>
+<body>
+<div class="layout">
+    <div class="side">
+        <h2>🏥 Quick Rescue</h2>
+        {% if session.get('role') == 'admin' %}
+        <a href="/admin/dashboard">Admin Dashboard</a><a href="/admin/services">Manage Services</a><a href="/admin/requests">Emergency Requests</a><a href="/admin/users">Users</a><a class="btn" href="/logout">Logout</a>
+        {% else %}
+        <a href="/dashboard">Dashboard</a><a href="/blood">Blood</a><a href="/oxygen">Oxygen</a><a href="/ambulance">Ambulance</a><a href="/organs">Organs</a><a href="/icu">ICU Assets</a><a href="/my_requests">My Requests</a><a href="/contact">Contact</a><a class="btn" href="/logout">Logout</a>
+        {% endif %}
+    </div>
+    <div class="main"><div class="top"><b>{{ heading or 'Management Command Center' }}</b><span>👤 {{ session.get('name','Guest') }} | {{ session.get('role','') }}</span></div><div class="content">{% block content %}{% endblock %}</div></div>
+</div>
+</body>
+</html>
